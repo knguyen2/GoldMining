@@ -33,3 +33,27 @@
 
 */
 
+#include <iostream>
+#include <time.h> 
+#include <iomanip>
+using namespace std;
+
+//  Declaring const variables for the game board size, max number of guesses, max number of Gold, and max number of Bomb
+const int ROW = 8;
+const int COL = 8;
+const int MAXGUESS = 5;
+const int MAXGOLD = 5;
+const int MAXBOMB = 1;
+
+
+
+
+int main()
+{
+	
+
+	
+
+	system("pause");
+	return 0;
+}
