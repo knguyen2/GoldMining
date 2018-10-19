@@ -47,7 +47,7 @@ const int MAXBOMB = 1;
 
 //  Function Declaration
 void hiddenBoard(char finalBoard[ROW][COL]);
-
+void presentBoard(char showBoard[ROW][COL]);
 
 
 
@@ -98,9 +98,46 @@ void hiddenBoard(char finalBoard[ROW][COL])
 }
 
 
+// Function to ask user to enter an x-coordinate and an y-coordinate for each guess
+void presentBoard(char showBoard[ROW][COL])
+{
+	int row, col;
+	int chances = MAXGUESS;
+	int pointsEarned = 0;
 
+	// Initialize a do-while loop for maximum number of chances 
+	do {
+		cout << "\n\n\t What is your x-coordinate (row number from 1-8)? ";
+		cin >> row;
+		cout << "\n\t What is your y-coordinate (column number from 1-8)? ";
+		cin >> col;
 
+		// Selection Statements if, else if, and else to test user's luck
 
+		if (showBoard[row - 1][col - 1] == 'G')
+		{
+			cout << "\n\n YAY! YOU FOUND GOLD! You have ...";
+
+			showBoard[row - 1][col - 1] = 'F';
+			pointsEarned = pointsEarned + 1;
+			chances++;
+			chances--;
+			cout << "\n\n " << chances << " GUESSES LEFT! \n\n" << endl;
+			continue; //skip the rest of the loop in the current iteration if the specified condition is met
+		}
+		else if (showBoard[row - 1][col - 1] == 'B')
+		{
+			chances = 0;
+			cout << "\n\n YOU HIT A BOMB! \n\n GAME OVER!!! \n" << endl;
+			break; // stop the execution or end the game if BOMB is found
+		}
+		else
+			cout << "\n\n Oops! No Luck :( ";
+		chances--;
+		cout << "\n\n " << chances << " guess(es) left! \n" << endl;
+
+	} while (chances > 0);
+} 
 
 int main()
 {
@@ -109,6 +146,7 @@ int main()
 	char showFinalBoard[ROW][COL];
 
 	hiddenBoard(showFinalBoard);
+	presentBoard(showFinalBoard);
 	
 
 	system("pause");
