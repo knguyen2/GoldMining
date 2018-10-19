@@ -213,13 +213,24 @@ void presentBoard(char showBoard[ROW][COL])
 
 int main()
 {
-	
-	// Functions Call 
-	char showFinalBoard[ROW][COL];
+	char select = 'Y';
 
-	hiddenBoard(showFinalBoard);
-	board2D_arr(showFinalBoard);
-	presentBoard(showFinalBoard);
+	// Initialize a while loop which allow user to continue to play games until they decide to quit.
+	while (select == 'Y' || select == 'y') 
+	{
+			// Functions Call 
+			char showFinalBoard[ROW][COL];
+
+			hiddenBoard(showFinalBoard);
+			board2D_arr(showFinalBoard);
+			presentBoard(showFinalBoard);
+
+			cout << "\n\t Enter Y to play another game, or enter any key to end: ";
+			cin >> select;
+			cout << "\n\n";
+	}
+	cout << "\t Leaving your board game now. See you again soon! " << endl;
+	cout << endl;
 	
 
 	system("pause");
