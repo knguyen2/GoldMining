@@ -52,7 +52,6 @@ void presentBoard(char showBoard[ROW][COL]);
 
 
 
-
 // Initialize a hidden (?'s) board and display instructions to the player
 void hiddenBoard(char finalBoard[ROW][COL])
 {
@@ -169,9 +168,9 @@ void presentBoard(char showBoard[ROW][COL])
 			break; // stop the execution or end the game if BOMB is found
 		}
 		else
-			cout << "\n\n Oops! No Luck :( ";
-		chances--;
-		cout << "\n\n " << chances << " guess(es) left! \n" << endl;
+			chances--;
+			cout << "\n\n Oops! No Luck :( ";			
+			cout << "\n\n " << chances << " guess(es) left! \n" << endl;
 
 	} while (chances > 0);
 
@@ -186,7 +185,7 @@ void presentBoard(char showBoard[ROW][COL])
 
 
 	// The player is presented with the game board result with the Contents showing  “G” = Gold, and “B” = bomb 
-	cout << "\n\n\n\t   ";
+	cout << "\n\n\n\t    ";
 
 	for (col = 0; col < COL; col++)
 	{
@@ -216,19 +215,19 @@ int main()
 	char select = 'Y';
 
 	// Initialize a while loop which allow user to continue to play games until they decide to quit.
-	while (select == 'Y' || select == 'y') 
+	do 
 	{
-			// Functions Call 
-			char showFinalBoard[ROW][COL];
+		// Functions Call 
+		char showFinalBoard[ROW][COL];
 
-			hiddenBoard(showFinalBoard);
-			board2D_arr(showFinalBoard);
-			presentBoard(showFinalBoard);
+		hiddenBoard(showFinalBoard);
+		board2D_arr(showFinalBoard);
+		presentBoard(showFinalBoard);
 
-			cout << "\n\t Enter Y to play another game, or enter any key to end: ";
-			cin >> select;
-			cout << "\n\n";
-	}
+		cout << "\n\t Wanna play another game (Enter Y or N)?  ";
+		cin >> select;
+		cout << "\n\n";
+	} while (select == 'Y' || select == 'y');
 	cout << "\t Leaving your board game now. See you again soon! " << endl;
 	cout << endl;
 	
