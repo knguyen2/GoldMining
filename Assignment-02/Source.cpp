@@ -47,6 +47,7 @@ const int MAXBOMB = 1;
 
 //  Function Declaration
 void hiddenBoard(char finalBoard[ROW][COL]);
+void board2D_arr(char finalBoard[ROW][COL]);
 void presentBoard(char showBoard[ROW][COL]);
 
 
@@ -96,6 +97,42 @@ void hiddenBoard(char finalBoard[ROW][COL])
 	cout << "\t  - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 	cout << endl;
 }
+
+
+
+// Function to initialize game board 2D-array with GOLD (G) and BOMB (B)
+void board2D_arr(char finalBoard[ROW][COL])
+{
+	char rows, cols;
+	int gold;
+	int bomb;
+	int xCoordinate, yCoordinate;
+
+
+	for (rows = 0; rows < ROW; rows++)
+	{
+		for (cols = 0; cols < COL; cols++)
+		{
+			finalBoard[rows][cols] = ' ';
+		}
+	}
+
+	for (gold = 0; gold < MAXGOLD; gold++)
+	{
+		xCoordinate = rand() % ROW;
+		yCoordinate = rand() % COL;
+		finalBoard[xCoordinate][yCoordinate] = 'G';
+	}
+
+	for (bomb = 0; bomb < MAXBOMB; bomb++)
+	{
+		xCoordinate = rand() % ROW;
+		yCoordinate = rand() % COL;
+		finalBoard[xCoordinate][yCoordinate] = 'B';
+	}
+	srand(time(NULL));
+}
+
 
 
 // Function to ask user to enter an x-coordinate and an y-coordinate for each guess
@@ -181,6 +218,7 @@ int main()
 	char showFinalBoard[ROW][COL];
 
 	hiddenBoard(showFinalBoard);
+	board2D_arr(showFinalBoard);
 	presentBoard(showFinalBoard);
 	
 
