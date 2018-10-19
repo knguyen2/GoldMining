@@ -45,13 +45,70 @@ const int MAXGUESS = 5;
 const int MAXGOLD = 5;
 const int MAXBOMB = 1;
 
+//  Function Declaration
+void hiddenBoard(char finalBoard[ROW][COL]);
+
+
+
+
+
+// Initialize a hidden (?'s) board and display instructions to the player
+void hiddenBoard(char finalBoard[ROW][COL])
+{
+	cout << "\n\n\t\t    * * * * * * * * * * * * * * * " << endl;
+	cout << "\t\t    *                           * " << endl;
+	cout << "\t\t    *   Let's Find Some Gold!   * " << endl;
+	cout << "\t\t    *                           * " << endl;
+	cout << "\t\t    *  You're given 5 Guesses.  * " << endl;
+	cout << "\t\t    *   5 Pieces of Gold (G),   * " << endl;
+	cout << "\t\t    *  and 1 Hidden Bomb (B)    * " << endl;
+	cout << "\t\t    *                           * " << endl;
+	cout << "\t\t    *   Test Your Luck Now!     * " << endl;
+	cout << "\t\t    *                           * " << endl;
+	cout << "\t\t    * * * * * * * * * * * * * * * " << endl;
+
+
+	int row;
+	int col;
+	cout << "\n\n\n\t   ";
+
+	//Assigning column lables/ header from 1-8
+	for (col = 0; col < COL; col++)
+	{
+		cout << setw(5) << col + 1;
+	}
+	cout << endl;
+	cout << "\t  - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+
+	//Assigning rows lables from 1-8 and columnn data 
+	for (row = 0; row < ROW; row++)
+	{
+		cout << setw(5) << "\t" << row + 1;
+		cout << " | ";
+
+		for (col = 0; col < COL; col++)
+		{
+			cout << setw(5) << " ? ";
+		}
+		cout << setw(5) << " | ";
+		cout << endl;
+	}
+	cout << "\t  - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+	cout << endl;
+}
+
+
+
 
 
 
 int main()
 {
 	
+	// Functions Call 
+	char showFinalBoard[ROW][COL];
 
+	hiddenBoard(showFinalBoard);
 	
 
 	system("pause");
