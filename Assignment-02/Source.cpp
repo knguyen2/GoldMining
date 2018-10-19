@@ -137,6 +137,41 @@ void presentBoard(char showBoard[ROW][COL])
 		cout << "\n\n " << chances << " guess(es) left! \n" << endl;
 
 	} while (chances > 0);
+
+	//The player is presented with the number of Points earned (gold that was found)
+	cout << "\n\n\t\t    YOU EARNED: " << pointsEarned << " POINT(s)." << endl;
+	cout << "\n\t\t    Better Luck Next Time! \n" << endl;
+
+
+	cout << "\n\n\t    * * * * * * * * * * * * * * * * * * * *" << endl;
+	cout << "\n\t      Your game board is displayed below " << endl;
+	cout << "\n\t    * * * * * * * * * * * * * * * * * * * *" << endl;
+
+
+	// The player is presented with the game board result with the Contents showing  “G” = Gold, and “B” = bomb 
+	cout << "\n\n\n\t   ";
+
+	for (col = 0; col < COL; col++)
+	{
+		cout << setw(5) << col + 1;
+	}
+	cout << endl;
+	cout << "\t  - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+
+	for (row = 0; row < ROW; row++)
+	{
+		cout << setw(5) << "\t" << row + 1;
+		cout << " | ";
+
+		for (col = 0; col < COL; col++)
+		{
+			cout << setw(5) << showBoard[row][col];
+		}
+		cout << setw(5) << " | ";
+		cout << endl;
+	}
+	cout << "\t  - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+	cout << endl;
 } 
 
 int main()
