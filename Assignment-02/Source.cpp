@@ -112,14 +112,14 @@ void presentBoard(char showBoard[ROW][COL])
 		cout << "\n\t What is your y-coordinate (column number from 1-8)? ";
 		cin >> col;
 
-		// Selection Statements if, else if, and else to test user's luck
+		// Selection Statements if, else if, and else to test user's luck & reward an extra guess if Found Gold
 
 		if (showBoard[row - 1][col - 1] == 'G')
 		{
 			cout << "\n\n YAY! YOU FOUND GOLD! You have ...";
 
 			showBoard[row - 1][col - 1] = 'F';
-			pointsEarned = pointsEarned + 1;
+			pointsEarned = pointsEarned + 1; 
 			chances++;
 			chances--;
 			cout << "\n\n " << chances << " GUESSES LEFT! \n\n" << endl;
