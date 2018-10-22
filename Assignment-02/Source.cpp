@@ -52,7 +52,7 @@ void presentBoard(char showBoard[ROW][COL]);
 
 
 
-// Initialize a hidden (?'s) board and display instructions to the player
+// Setting up a hidden (?'s) board and display instructions to the player
 void hiddenBoard(char finalBoard[ROW][COL])
 {
 	cout << "\n\n\t\t    * * * * * * * * * * * * * * * " << endl;
@@ -99,14 +99,13 @@ void hiddenBoard(char finalBoard[ROW][COL])
 
 
 
-// Function to initialize game board 2D-array with GOLD (G) and BOMB (B)
+// Function to initialize game board 2D-array with random GOLD (G) and BOMB (B)
 void board2D_arr(char finalBoard[ROW][COL])
 {
 	char rows, cols;
-	int gold;
-	int bomb;
+	static int gold;
+	static int bomb;
 	int xCoordinate, yCoordinate;
-
 
 	for (rows = 0; rows < ROW; rows++)
 	{
@@ -118,8 +117,8 @@ void board2D_arr(char finalBoard[ROW][COL])
 
 	for (gold = 0; gold < MAXGOLD; gold++)
 	{
-		xCoordinate = rand() % ROW;
-		yCoordinate = rand() % COL;
+		xCoordinate = (rand() % ROW) + 1; //generates a pseudo-random number 
+		yCoordinate = (rand() % COL) + 1;
 		finalBoard[xCoordinate][yCoordinate] = 'G';
 	}
 
@@ -129,13 +128,13 @@ void board2D_arr(char finalBoard[ROW][COL])
 		yCoordinate = rand() % COL;
 		finalBoard[xCoordinate][yCoordinate] = 'B';
 	}
-	srand(time(NULL));
+	srand(time(NULL)); //seeds pseudo-random number generator 
+
 }
-
-
 
 // Function to ask user to enter an x-coordinate and an y-coordinate for each guess
 void presentBoard(char showBoard[ROW][COL])
+
 {
 	int row, col;
 	int chances = MAXGUESS;
@@ -147,6 +146,8 @@ void presentBoard(char showBoard[ROW][COL])
 		cin >> row;
 		cout << "\n\t What is your y-coordinate (column number from 1-8)? ";
 		cin >> col;
+		
+
 
 		// Selection Statements if, else if, and else to test user's luck & reward an extra guess if Found Gold
 
@@ -227,6 +228,7 @@ int main()
 		cout << "\n\t Wanna play another game (Enter Y or N)?  ";
 		cin >> select;
 		cout << "\n\n";
+
 	} while (select == 'Y' || select == 'y');
 	cout << "\t Leaving your board game now. See you again soon! " << endl;
 	cout << endl;
