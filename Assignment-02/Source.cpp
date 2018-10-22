@@ -117,7 +117,7 @@ void board2D_arr(char finalBoard[ROW][COL])
 
 	for (gold = 0; gold < MAXGOLD; gold++)
 	{
-		xCoordinate = (rand() % ROW) + 1; //generates a pseudo-random number 
+		xCoordinate = (rand() % ROW) + 1; //generates a pseudo-random number
 		yCoordinate = (rand() % COL) + 1;
 		finalBoard[xCoordinate][yCoordinate] = 'G';
 	}
@@ -134,23 +134,21 @@ void board2D_arr(char finalBoard[ROW][COL])
 
 // Function to ask user to enter an x-coordinate and an y-coordinate for each guess
 void presentBoard(char showBoard[ROW][COL])
-
 {
 	int row, col;
 	int chances = MAXGUESS;
 	int pointsEarned = 0;
 
 	// Initialize a do-while loop for maximum number of chances 
-	do {
+	do 
+	{
 		cout << "\n\n\t What is your x-coordinate (row number from 1-8)? ";
 		cin >> row;
 		cout << "\n\t What is your y-coordinate (column number from 1-8)? ";
 		cin >> col;
 		
 
-
 		// Selection Statements if, else if, and else to test user's luck & reward an extra guess if Found Gold
-
 		if (showBoard[row - 1][col - 1] == 'G')
 		{
 			cout << "\n\n YAY! YOU FOUND GOLD! You have ...";
