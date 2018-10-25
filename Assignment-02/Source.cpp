@@ -103,8 +103,8 @@ void hiddenBoard(char finalBoard[ROW][COL])
 void board2D_arr(char finalBoard[ROW][COL])
 {
 	char rows, cols;
-	static int gold;
-	static int bomb;
+	int gold;
+	int bomb;
 	int xCoordinate, yCoordinate;
 
 	for (rows = 0; rows < ROW; rows++)
@@ -117,8 +117,8 @@ void board2D_arr(char finalBoard[ROW][COL])
 
 	for (gold = 0; gold < MAXGOLD; gold++)
 	{
-		xCoordinate = (rand() % ROW) + 1; //generates a pseudo-random number
-		yCoordinate = (rand() % COL) + 1;
+		xCoordinate = rand() % ROW; //generates a pseudo-random number
+		yCoordinate = rand() % COL;
 		finalBoard[xCoordinate][yCoordinate] = 'G';
 	}
 
@@ -146,31 +146,38 @@ void presentBoard(char showBoard[ROW][COL])
 		cin >> row;
 		cout << "\n\t What is your y-coordinate (column number from 1-8)? ";
 		cin >> col;
-		
 
-		// Selection Statements if, else if, and else to test user's luck & reward an extra guess if Found Gold
-		if (showBoard[row - 1][col - 1] == 'G')
+		// Check user's inputs for x and y axis, and inform them if inputs aren't from 1 - 8
+		if ((row <= 8 && row >= 1) && (col <= 8 && col >= 1)) 
 		{
-			cout << "\n\n YAY! YOU FOUND GOLD! You have ...";
+			// Selection Statements if, else if, and else to test user's luck & reward an extra guess if Found Gold
+			if (showBoard[row - 1][col - 1] == 'G')
+			{
+				cout << "\n\n YAY! YOU FOUND GOLD! You have ...";
 
-			showBoard[row - 1][col - 1] = 'F';
-			pointsEarned = pointsEarned + 1; 
-			chances++;
-			chances--;
-			cout << "\n\n " << chances << " GUESSES LEFT! \n\n" << endl;
-			continue; //skip the rest of the loop in the current iteration if the specified condition is met
+				showBoard[row - 1][col - 1] = 'F';
+				pointsEarned = pointsEarned + 1; 
+				chances++;
+				chances--;
+				cout << "\n\n " << chances << " GUESSES LEFT! \n\n" << endl;
+				continue; //skip the rest of the loop in the current iteration if the specified condition is met
+			}
+			else if (showBoard[row - 1][col - 1] == 'B')
+			{
+				chances = 0;
+				cout << "\n\n YOU HIT A BOMB! \n\n GAME OVER!!! \n" << endl;
+				break; // stop the execution or end the game if BOMB is found
+			}
+			else
+				chances--;
+				cout << "\n\n Oops! No Luck :( ";			
+				cout << "\n\n " << chances << " guess(es) left! \n" << endl;
 		}
-		else if (showBoard[row - 1][col - 1] == 'B')
+		else 
 		{
-			chances = 0;
-			cout << "\n\n YOU HIT A BOMB! \n\n GAME OVER!!! \n" << endl;
-			break; // stop the execution or end the game if BOMB is found
+			cout << "\n Your x-coordinate and y-coordinate must be from 1-8 \n Try again!" << endl;
+			cout << endl;
 		}
-		else
-			chances--;
-			cout << "\n\n Oops! No Luck :( ";			
-			cout << "\n\n " << chances << " guess(es) left! \n" << endl;
-
 	} while (chances > 0);
 
 	//The player is presented with the number of Points earned (gold that was found)
@@ -216,7 +223,7 @@ int main()
 	// Initialize a while loop which allow user to continue to play games until they decide to quit.
 	do 
 	{
-		// Functions Call 
+		// Functions Call for 2D array to store possible locations of G and B
 		char showFinalBoard[ROW][COL];
 
 		hiddenBoard(showFinalBoard);
