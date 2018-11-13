@@ -115,6 +115,8 @@ void board2D_arr(char finalBoard[ROW][COL])
 		}
 	}
 
+	srand(time(NULL)); //seeds pseudo-random number generator 
+
 	for (gold = 0; gold < MAXGOLD; gold++)
 	{
 		xCoordinate = rand() % ROW; //generates a pseudo-random number
@@ -128,7 +130,7 @@ void board2D_arr(char finalBoard[ROW][COL])
 		yCoordinate = rand() % COL;
 		finalBoard[xCoordinate][yCoordinate] = 'B';
 	}
-	srand(time(NULL)); //seeds pseudo-random number generator 
+	
 
 }
 
@@ -140,7 +142,7 @@ void presentBoard(char showBoard[ROW][COL])
 	int pointsEarned = 0;
 
 	// Initialize a do-while loop for maximum number of chances 
-	do 
+	do
 	{
 		cout << "\n\n\t What is your x-coordinate (row number from 1-8)? ";
 		cin >> row;
@@ -148,7 +150,7 @@ void presentBoard(char showBoard[ROW][COL])
 		cin >> col;
 
 		// Check user's inputs for x and y axis, and inform them if inputs aren't from 1 - 8
-		if ((row <= 8 && row >= 1) && (col <= 8 && col >= 1)) 
+		if ((row <= 8 && row >= 1) && (col <= 8 && col >= 1))
 		{
 			// Selection Statements if, else if, and else to test user's luck & reward an extra guess if Found Gold
 			if (showBoard[row - 1][col - 1] == 'G')
@@ -156,7 +158,7 @@ void presentBoard(char showBoard[ROW][COL])
 				cout << "\n\n YAY! YOU FOUND GOLD! You have ...";
 
 				showBoard[row - 1][col - 1] = 'F';
-				pointsEarned = pointsEarned + 1; 
+				pointsEarned = pointsEarned + 1;
 				chances++;
 				chances--;
 				cout << "\n\n " << chances << " GUESSES LEFT! \n\n" << endl;
@@ -170,19 +172,29 @@ void presentBoard(char showBoard[ROW][COL])
 			}
 			else
 				chances--;
-				cout << "\n\n Oops! No Luck :( ";			
-				cout << "\n\n " << chances << " guess(es) left! \n" << endl;
+			cout << "\n\n Oops! No Luck :( ";
+			cout << "\n\n " << chances << " guess(es) left! \n" << endl;
 		}
-		else 
+		else
 		{
-			cout << "\n Your x-coordinate and y-coordinate must be from 1-8 \n Try again!" << endl;
+			cout << "\n BOTH your x-coordinate and y-coordinate must be from 1-8 \n\n Try again!" << endl;
 			cout << endl;
 		}
 	} while (chances > 0);
 
 	//The player is presented with the number of Points earned (gold that was found)
 	cout << "\n\n\t\t    YOU EARNED: " << pointsEarned << " POINT(s)." << endl;
-	cout << "\n\t\t    Better Luck Next Time! \n" << endl;
+	if (pointsEarned = 0 || pointsEarned < 1)
+	{
+		cout << "\n\t\t    Better Luck Next Time! \n" << endl;
+	}
+	else if (pointsEarned >= 1 || pointsEarned <= 4)
+	{	
+		cout << "\n\t\t    Hmm. You're Kinda Lucky! \n" << endl;
+	}
+	else 
+		cout << "\n\t\t    Wonderful! You Have All The Luck! \n" << endl;
+		
 
 
 	cout << "\n\n\t    * * * * * * * * * * * * * * * * * * * *" << endl;
@@ -224,7 +236,7 @@ int main()
 	do 
 	{
 		// Functions Call for 2D array to store possible locations of G and B
-		char showFinalBoard[ROW][COL];
+		char showFinalBoard[ROW][COL];		//Declare array
 
 		hiddenBoard(showFinalBoard);
 		board2D_arr(showFinalBoard);
